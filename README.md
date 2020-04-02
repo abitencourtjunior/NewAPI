@@ -1,1 +1,2 @@
-# NewAPI
+# NewsAPI
+Spring Boot news API
