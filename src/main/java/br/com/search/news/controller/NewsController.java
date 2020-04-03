@@ -30,7 +30,7 @@ public class NewsController {
     public Page<NewsDto> listNews(
             @PageableDefault(page = 0, size = 100, direction = Direction.DESC, sort = "id") final Pageable newsPagination) {
 
-        if (!newsPagination.toOptional().isPresent()) {
+        if (newsPagination != null) {
             final Page<News> newsResult = newsRepository.findBySearched(false, newsPagination);
             final List<News> content = newsResult.getContent();
             content.forEach(news -> {
