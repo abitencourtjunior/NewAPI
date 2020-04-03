@@ -48,6 +48,15 @@ public class NewsController {
         return null;
     }
 
+    @GetMapping("/tmp")
+    public Page<NewsDto> listTestNews(@PageableDefault(page = 0, size = 100000, direction = Direction.DESC, sort = "id") final Pageable newsPagination) {
+
+        final Page<News> newsResult = newsRepository.findAll(newsPagination);
+
+        return NewsDto.converter(newsResult);
+
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> detailsPost(@PathVariable final Long id) {
         final Optional<News> newFound = newsRepository.findById(id);

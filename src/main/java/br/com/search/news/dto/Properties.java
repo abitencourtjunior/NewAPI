@@ -12,6 +12,9 @@ public class Properties implements Serializable {
     private String content;
     private String time;
     private String listNews;
+    private String active;
+    private String recovered;
+    private String fatal;
 
     public String getTitle() {
         return title;
@@ -61,12 +64,46 @@ public class Properties implements Serializable {
         this.listNews = listNews;
     }
 
+    public String getActive() {
+        return active;
+    }
+
+    public String getFatal() {
+        return fatal;
+    }
+
+    public String getRecovered() {
+        return recovered;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+    public void setFatal(String fatal) {
+        this.fatal = fatal;
+    }
+
+    public void setRecovered(String recovered) {
+        this.recovered = recovered;
+    }
+
     public static Properties newsBingSearch() {
         final Properties properties = new Properties();
         properties.setTitle("t_t");
         properties.setListNews("news-card-body");
         properties.setContent("snippet");
         properties.setSource("source");
+        return properties;
+    }
+
+    public static Properties newsBingGraphCovid() {
+        final Properties properties = new Properties();
+        properties.setTitle("locationTitle");
+        properties.setContent("number confirmed");
+        properties.setActive("number active");
+        properties.setRecovered("number recovered");
+        properties.setRecovered("number death");
         return properties;
     }
 

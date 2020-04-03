@@ -5,7 +5,8 @@ import br.com.search.news.dto.Properties;
 
 public enum NewsSource {
 
-    BING("https://www.bing.com/news/search?q=coronav%c3%adrus&FORM=FRESET", Properties.newsBingSearch());
+    BING("https://www.bing.com/news/search?q=coronav%c3%adrus&FORM=FRESET", Properties.newsBingSearch()),
+    BING_GRAPH_COVID("https://www.bing.com/covid/local/brazil?vert=graph", Properties.newsBingGraphCovid());
 
     private String url;
     private Properties properties;
