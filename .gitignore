@@ -87,6 +87,7 @@ hs_err_pid*
 .classpath
 
 .settings/
+.project
 
 bin/
 
