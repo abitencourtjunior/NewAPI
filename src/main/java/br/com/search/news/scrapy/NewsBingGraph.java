@@ -1,31 +1,29 @@
 
 package br.com.search.news.scrapy;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import br.com.search.news.dto.PropertiesGraph;
+import br.com.search.news.enumerate.NewsSource;
+import br.com.search.news.model.Graph;
+import br.com.search.news.repository.GraphRepository;
+import kong.unirest.Unirest;
 
 @Component
 public class NewsBingGraph {
 
-    // @Scheduled(initialDelay = 5000, fixedDelay = 10000)
+    @Autowired
+    private GraphRepository graphRepository;
+
+    @Scheduled(cron = "0 50 8 * * ?")
     public void searchGraphCovidNews() throws Exception {
 
-        /*
-         * final Properties properties = NewsSource.BING_GRAPH_COVID.getProperties();
-         * final Document doc =
-         * Jsoup.connect(NewsSource.BING_GRAPH_COVID.getUrl()).timeout(3000).get();
-         * final Elements location = doc.getElementsByClass(properties.getTitle());
-         * final Elements totalPersons =
-         * doc.getElementsByClass(properties.getContent()); final Elements totalActive =
-         * doc.getElementsByClass(properties.getActive()); final Elements totalRecovered
-         * = doc.getElementsByClass(properties.getRecovered()); final Elements
-         * totalFatal = doc.getElementsByClass(properties.getFatal());
-         * System.out.println(location.get(0).text());
-         * System.out.println(totalPersons.get(0).text());
-         * System.out.println(totalActive.get(0).text());
-         * System.out.println(totalRecovered.get(0).text());
-         * System.out.println(totalFatal.get(0).text());
-         */
-
+        final PropertiesGraph data = Unirest.get(NewsSource.BING_GRAPH_COVID.getUrl()).asObject(PropertiesGraph.class).getBody();
+        final Graph currentData = data.converter();
+        graphRepository.save(currentData);
+        System.out.println(currentData.toString());
     }
 
 }

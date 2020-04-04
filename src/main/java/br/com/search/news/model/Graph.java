@@ -15,19 +15,11 @@ public class Graph {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String location;
-    private String active;
-    private String recovered;
-    private String fatal;
-    private String total;
+    private Long cases;
+    private Long recovered;
+    private Long deaths;
+    private Long confirmed;
     private final LocalDateTime localDateTime = LocalDateTime.now();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getLocation() {
         return location;
@@ -37,40 +29,46 @@ public class Graph {
         this.location = location;
     }
 
-    public String getActive() {
-        return active;
-    }
-
-    public void setActive(String active) {
-        this.active = active;
-    }
-
-    public String getRecovered() {
+    public Long getRecovered() {
         return recovered;
     }
 
-    public void setRecovered(String recovered) {
+    public void setRecovered(Long recovered) {
         this.recovered = recovered;
     }
 
-    public String getFatal() {
-        return fatal;
+    public Long getCases() {
+        return cases;
     }
 
-    public void setFatal(String fatal) {
-        this.fatal = fatal;
+    public void setCases(Long cases) {
+        this.cases = cases;
     }
 
-    public String getTotal() {
-        return total;
+    public Long getDeaths() {
+        return deaths;
     }
 
-    public void setTotal(String total) {
-        this.total = total;
+    public void setDeaths(Long deaths) {
+        this.deaths = deaths;
+    }
+
+    public Long getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(Long confirmed) {
+        this.confirmed = confirmed;
     }
 
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Graph [id=" + id + ", location=" + location + ", cases=" + cases + ", recovered=" + recovered + ", deaths=" + deaths + ", confirmed=" + confirmed + ", localDateTime=" + localDateTime
+                + "]";
     }
 
 }
