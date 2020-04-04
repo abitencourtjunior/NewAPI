@@ -17,13 +17,12 @@ public class NewsBingGraph {
     @Autowired
     private GraphRepository graphRepository;
 
-    @Scheduled(cron = "0 50 8 * * ?")
+    @Scheduled(cron = "0 */6 * * * ?")
     public void searchGraphCovidNews() throws Exception {
 
         final PropertiesGraph data = Unirest.get(NewsSource.BING_GRAPH_COVID.getUrl()).asObject(PropertiesGraph.class).getBody();
         final Graph currentData = data.converter();
         graphRepository.save(currentData);
-        System.out.println(currentData.toString());
     }
 
 }
